@@ -21,7 +21,7 @@ class poll(models.Model):
 
 class question(models.Model):
     """Вопрос"""
-    poll = models.ForeignKey(poll, on_delete=models.CASCADE)
+    poll = models.ForeignKey(poll, related_name='questions', on_delete=models.CASCADE)
     question_types = [
         (0, 'Тектовый'),
         (1, 'Один вариант'),
@@ -44,7 +44,7 @@ class question(models.Model):
 
 class choice(models.Model):
     """Варианты ответа"""
-    question = models.ForeignKey(question, on_delete=models.CASCADE)
+    question = models.ForeignKey(question, related_name='choices', on_delete=models.CASCADE)
     name = models.CharField('Название', max_length=50)
 
     class Meta:
